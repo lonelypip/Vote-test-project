@@ -2,7 +2,20 @@
 
 {% block content %}
    <div class="container">
-      {% for person in people %}
+      {% for person in group_a %}
+         <h3>{{ person.login }}</h1>
+         {% if person.img %}
+            <img src="{{ person.img.url }}">
+         {% else %}
+            <img src="/pictures/default.jpg">
+         {% endif %}
+         <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="radio" name="login" id="person{{ forloop.counter }}"  value="{{ person.login }}">
+            <input type="submit" value="Vote">
+         </form>
+      {% endfor %}
+      {% for person in group_b %}
          <h3>{{ person.login }}</h1>
          {% if person.img %}
             <img src="{{ person.img.url }}">

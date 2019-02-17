@@ -7,7 +7,12 @@ from django.views.generic import View
 class Poll(View):
    def get(self, request):
       people = Human.objects.all()
-      return render(request, 'poll/home.html', context={'people':people})
+      group_a = people[:2]
+      group_b = people[2:]
+      return render(request, 'poll/home.html', context={
+         'group_a':group_a,
+         'group_b':group_b,
+      })
    
    def post(self, request):
       bound_form = request.POST['login']
