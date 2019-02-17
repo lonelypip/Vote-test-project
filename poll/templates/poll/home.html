@@ -2,31 +2,35 @@
 
 {% block content %}
    <div class="container">
-      {% for person in group_a %}
-         <h3>{{ person.login }}</h1>
-         {% if person.img %}
-            <img src="{{ person.img.url }}">
-         {% else %}
-            <img src="/pictures/default.jpg">
-         {% endif %}
-         <form method="POST" enctype="multipart/form-data">
-            {% csrf_token %}
-            <input type="radio" name="login" id="person{{ forloop.counter }}"  value="{{ person.login }}">
-            <input type="submit" value="Vote">
-         </form>
-      {% endfor %}
-      {% for person in group_b %}
-         <h3>{{ person.login }}</h1>
-         {% if person.img %}
-            <img src="{{ person.img.url }}">
-         {% else %}
-            <img src="/pictures/default.jpg">
-         {% endif %}
-         <form method="POST" enctype="multipart/form-data">
-            {% csrf_token %}
-            <input type="radio" name="login" id="person{{ forloop.counter }}"  value="{{ person.login }}">
-            <input type="submit" value="Vote">
-         </form>
+      {% for person1,person2 in context %}
+         <div class="wrap">
+            <div class="p-box1">
+               <h3>{{ person1.login }}</h1>
+               {% if person1.img %}
+                  <img src="{{ person1.img.url }}">
+               {% else %}
+                  <img src="/pictures/default.jpg">
+               {% endif %}
+               <form method="POST" enctype="multipart/form-data">
+                  {% csrf_token %}
+                  <input type="radio" name="login" id="person1{{ forloop.counter }}"  value="{{ person1.login }}">
+                  <input type="submit" value="Vote">
+               </form>
+            </div>
+            <div class="p-box">
+               <h3>{{ person2.login }}</h1>
+               {% if person2.img %}
+                  <img src="{{ person2.img.url }}">
+               {% else %}
+                  <img src="/pictures/default.jpg">
+               {% endif %}
+               <form method="POST" enctype="multipart/form-data">
+                  {% csrf_token %}
+                  <input type="radio" name="login" id="person2{{ forloop.counter }}"  value="{{ person2.login }}">
+                  <input type="submit" value="Vote">
+               </form>
+            </div>
+         </div>
       {% endfor %}
    </div>
 {% endblock %}
