@@ -7,8 +7,8 @@ from django.views.generic import View
 class Poll(View):
    def get(self, request):
       people = Human.objects.all()
-      group_a = people[:2]
-      group_b = people[2:]
+      group_a = people[:4]
+      group_b = people[4:]
       zipped_list = zip(group_a,group_b)
       return render(request, 'poll/home.html', context={
          'zipped_list':zipped_list,
