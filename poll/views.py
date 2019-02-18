@@ -11,7 +11,7 @@ class Poll(View):
       group_b = people[2:]
       zipped_list = zip(group_a,group_b)
       return render(request, 'poll/home.html', context={
-         'context':zipped_list,
+         'zipped_list':zipped_list,
       })
    
    def post(self, request):
