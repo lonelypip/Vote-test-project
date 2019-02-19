@@ -11,9 +11,9 @@
                {% else %}
                   <img src="/pictures/default.jpg">
                {% endif %}
-               <form method="POST" enctype="multipart/form-data">
+               <form class="onSubmitForm" id="{{ person1.login }}" method="POST" enctype="multipart/form-data">
                   {% csrf_token %}
-                  <input type="radio" name="login" id="person1{{ forloop.counter }}"  value="{{ person1.login }}">
+                  <input type="radio" name="login" class="score" value="{{ person1.login }}" checked>
                   <input type="submit" value="Vote">
                </form>
             </div>
@@ -24,9 +24,9 @@
                {% else %}
                   <img src="/pictures/default.jpg">
                {% endif %}
-               <form method="POST" enctype="multipart/form-data">
+               <form class="onSubmitForm" method="POST" id="{{ person2.login }}" enctype="multipart/form-data">
                   {% csrf_token %}
-                  <input type="radio" name="login" id="person2{{ forloop.counter }}"  value="{{ person2.login }}">
+                  <input type="radio" name="login" id="person2{{ forloop.counter }}" class="score" value="{{ person2.login }}" checked>
                   <input type="submit" value="Vote">
                </form>
             </div>
@@ -34,6 +34,3 @@
       {% endfor %}
    </div>
 {% endblock %}
-
-
-

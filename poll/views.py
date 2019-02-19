@@ -1,3 +1,4 @@
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from .models import Human
 from .forms import HumanForm
@@ -21,6 +22,7 @@ class Poll(View):
          person = Human.objects.get(login=bound_form)
          person.score += 1
          person.save()
-         return redirect('home_url')
+         # return redirect('home_url')
+         return HttpResponse("")
       except:
          return render(request, 'poll/home.html', context={'people':people})
