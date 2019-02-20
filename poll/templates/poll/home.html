@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-   <div class="container">
+   <div class="container wrap-box">
       {% for person1,person2 in zipped_list %}
          <div class="wrap">
             <div class="p-box1">
@@ -14,7 +14,7 @@
                <form class="onSubmitForm" id="{{ person1.login }}" method="POST" enctype="multipart/form-data">
                   {% csrf_token %}
                   <input type="radio" name="login" class="score" value="{{ person1.login }}" checked>
-                  <input type="submit" value="Vote">
+                  <input class="submit-btn" type="submit" value="Vote">
                </form>
             </div>
             <div class="p-box">
@@ -27,7 +27,7 @@
                <form class="onSubmitForm" method="POST" id="{{ person2.login }}" enctype="multipart/form-data">
                   {% csrf_token %}
                   <input type="radio" name="login" id="person2{{ forloop.counter }}" class="score" value="{{ person2.login }}" checked>
-                  <input type="submit" value="Vote">
+                  <input class="submit-btn" type="submit" value="Vote">
                </form>
             </div>
          </div>
