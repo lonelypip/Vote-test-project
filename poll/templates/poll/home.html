@@ -1,36 +1,41 @@
 {% extends 'base.html' %}
 
 {% block content %}
-   <div class="container wrap-box">
-      {% for person1,person2 in zipped_list %}
-         <div class="wrap">
-            <div class="p-box1">
-               <h3>{{ person1.login }}</h1>
-               {% if person1.img %}
-                  <img src="{{ person1.img.url }}">
-               {% else %}
-                  <img src="/pictures/default.jpg">
-               {% endif %}
-               <form class="onSubmitForm" id="{{ person1.login }}" method="POST" enctype="multipart/form-data">
-                  {% csrf_token %}
-                  <input type="radio" name="login" class="score" value="{{ person1.login }}" checked>
-                  <input class="submit-btn" type="submit" value="Vote">
-               </form>
-            </div>
-            <div class="p-box">
-               <h3>{{ person2.login }}</h1>
-               {% if person2.img %}
-                  <img src="{{ person2.img.url }}">
-               {% else %}
-                  <img src="/pictures/default.jpg">
-               {% endif %}
-               <form class="onSubmitForm" method="POST" id="{{ person2.login }}" enctype="multipart/form-data">
-                  {% csrf_token %}
-                  <input type="radio" name="login" id="person2{{ forloop.counter }}" class="score" value="{{ person2.login }}" checked>
-                  <input class="submit-btn" type="submit" value="Vote">
-               </form>
-            </div>
-         </div>
-      {% endfor %}
-   </div>
+   {% if count_votes >= votes_list %}
+      <h1>GOODBYE</h1>
+   {% else %}
+      <div class="container wrap-box">
+         <form method="POST" enctype="multipart/form-data">
+            {% for person1,person2 in zipped_list %}
+               <div class="wrap">
+                  <div class="p-box1">
+                     <h3>{{ person1.login }}</h1>
+                     {% if person1.img %}
+                        <img src="{{ person1.img.url }}">
+                     {% else %}
+                        <img src="/pictures/default.jpg">
+                     {% endif %}
+                     <label class="checkbox">
+                        <input type="checkbox" name="person1[]" value="{{ person1.id }}">
+                     </label>
+                  </div>
+                  <div class="p-box">
+                     <h3>{{ person2.login }}</h1>
+                     {% if person2.img %}
+                        <img src="{{ person2.img.url }}">
+                     {% else %}
+                        <img src="/pictures/default.jpg">
+                     {% endif %}
+                     <label class="checkbox">
+                        <input type="checkbox" name="person2[]" value="{{ person2.id }}">
+                     </label>
+                  </div>
+               </div>
+            {% endfor %}
+            {% csrf_token %}
+            <button type="submit">Проголосовать</button>
+         </form>
+      </div>
+   {% endif %}
+
 {% endblock %}

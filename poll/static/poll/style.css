@@ -44,11 +44,23 @@ img {
    height: 260px;
 }
 
+/*
 .wrap {
    display: none;
 }
+*/
 
+/*
 .active {
+   display: flex;
+   justify-content: space-around;
+   border: 1px solid;
+   margin-bottom: 100px;
+   display: flex;
+}
+*/
+
+.wrap {
    display: flex;
    justify-content: space-around;
    border: 1px solid;
