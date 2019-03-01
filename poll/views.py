@@ -45,12 +45,12 @@ class Poll(View):
    
 
       ara = Human.objects.get(id=16)
-      wmara = ara.votes.all(user_ip)
+      wmara = ara.votes.all(7721)
 
       count_votes = len(wmara)
 
       print(count_votes)
-      print(ara.votes.all(user_ip))
+      print(ara.votes.all(7721))
       print()
       print(votes_list)
 
@@ -74,7 +74,7 @@ class Poll(View):
       try:
          for kek in obwi:
             qwerty = Human.objects.get(id=int(kek))
-            qwerty.votes.up(user_ip)
+            qwerty.votes.up(7721)
          return redirect('home_url')
       except:
          return redirect('home_url')
